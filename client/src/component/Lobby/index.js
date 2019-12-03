@@ -2,12 +2,13 @@ import React from 'react';
 import {
   LobbyWrapper, LobbyHeader, LobbyBody, LobbyNickname, CreateRoomButton, RoomInfoButton,
 } from './style';
+import { LoginButton } from './GitHubLogin';
 
 const Lobby = () => (
   <LobbyWrapper>
     <LobbyHeader>
       <LobbyNickname>hello, guest</LobbyNickname>
-      <div>login</div>
+      <LoginButton />
     </LobbyHeader>
     <LobbyBody>
       <CreateRoomButton>+ new Room();</CreateRoomButton>

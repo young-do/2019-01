@@ -72,6 +72,18 @@ const RoomInfoButton = styled.div`
     cursor: ${(props) => (props.enterable ? 'pointer' : 'not-allowed')};
 `;
 
+const LoginWrapper = styled.div`
+    justify-content: space-between;
+    display: flex;
+    width: 115px;
+`;
+
+const GitHubIcon = styled.svg`
+    width: 33px;
+    height: 33px;
+    shape-rendering: "crispEdges";
+`;
+
 export {
-  LobbyWrapper, LobbyHeader, LobbyBody, LobbyNickname, CreateRoomButton, RoomInfoButton,
+  LobbyWrapper, LobbyHeader, LobbyBody, LobbyNickname, CreateRoomButton, RoomInfoButton, GitHubIcon, LoginWrapper,
 };
