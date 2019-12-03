@@ -79,8 +79,9 @@ const GAME_START_BUTTON = {
 };
 
 const CHAT_AREA = {
-  BG_COLOR: 'rgba(255, 255, 255, 0.1)',
+  BG_COLOR: 'rgba(255, 255, 255, 0.2)',
   WIDTH: 280,
+  FONT_SIZE: 15,
 };
 
 const ROOM = {

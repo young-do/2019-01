@@ -14,7 +14,7 @@ const GameAreaWrapper = styled.div`
 
 const DashBoardWrapper = styled.div`
     position: relative;
-    margin: auto;
+    margin: 0 auto;
     width: ${DASHBOARD.WIDTH}px;
     height: ${DASHBOARD.HEIGHT}px;
     border: 2px solid gray;

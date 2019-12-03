@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  CHARACTER, FIELD, KEYCODE,
+  CHARACTER, FIELD, KEYCODE, ROOM,
 } from '../../../constants/room';
 import Character from '../../../class/character';
 import socket from '../../../class/socket';
@@ -84,7 +84,7 @@ const Field = () => {
   const updateCharacters = ({ characterList }) => {
     setTimeout(() => {
       teleportCharacters({ characterList });
-    }, 3000);
+    }, ROOM.WAITING_TIME_MS);
   };
 
   useEffect(() => {
