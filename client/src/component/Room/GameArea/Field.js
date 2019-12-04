@@ -5,6 +5,7 @@ import {
 import Character from '../../../class/character';
 import socket from '../../../class/socket';
 import Canvas from './Canvas';
+import { FieldWrapper } from './style';
 
 const Field = () => {
   const [characters, setCharacters] = useState(new Map());
@@ -99,6 +100,7 @@ const Field = () => {
 
   useEffect(() => {
     const keydownEventHandler = (event) => {
+      if (event.target.tagName === 'INPUT') return;
       if ((myCharacter instanceof Character) === false) return;
       if (myCharacter.isMoving()) return;
       if (myCharacter.isAlive() === false) return;
@@ -126,14 +128,10 @@ const Field = () => {
   };
 
   return (
-    <div
-      style={{
-        backgroundImage: `url('${FIELD.BACKGROUND}')`,
-        width: FIELD.getWidth(),
-        height: FIELD.getHeight(),
-      }}>
+    <FieldWrapper
+      style={{ backgroundImage: `url('${FIELD.BACKGROUND}')` }}>
       {getCanvasList(characters)}
-    </div>
+    </FieldWrapper>
   );
 };
 

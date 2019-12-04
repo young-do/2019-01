@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  DASHBOARD, QUIZ, COUNTER, GAME_START_BUTTON,
+  DASHBOARD, QUIZ, COUNTER, GAME_START_BUTTON, FIELD,
 } from '../../../constants/room';
 
 const GameAreaWrapper = styled.div`
@@ -76,7 +76,12 @@ const GameEndText = styled.div`
     font-size: ${GAME_START_BUTTON.FONT_SIZE}px;
 `;
 
+const FieldWrapper = styled.div`
+    width: ${FIELD.getWidth()}px;
+    height: ${FIELD.getHeight()}px;
+`;
+
 export {
   GameAreaWrapper, DashBoardWrapper, QuizWrapper, CounterWrapper,
-  GameStartButton, WaitingText, GameEndText,
+  GameStartButton, WaitingText, GameEndText, FieldWrapper,
 };
