@@ -84,6 +84,14 @@ class User {
     this.socket.on(EVENT.DISCONNECT, () => callback());
   }
 
+  emitEnterLobby() {
+    this.socket.emit(EVENT.ENTER_LOBBY);
+  }
+
+  emitLeaveRoom() {
+    this.socket.emit(EVENT.LEAVE_ROOM);
+  }
+
   emitRoomInfos(data) {
     this.socket.emit(EVENT.ROOM_INFOS, data);
   }

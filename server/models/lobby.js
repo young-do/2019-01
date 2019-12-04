@@ -47,6 +47,10 @@ class Lobby {
     room.enterUser(user);
     this.leaveUser(user.getId());
   }
+
+  deleteRoom(roomId) {
+    this.rooms.delete(roomId);
+  }
 }
 
 const lobby = new Lobby();

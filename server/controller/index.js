@@ -71,6 +71,7 @@ class Controller {
     if (user.isInLobby()) return;
     const room = lobby.getRoom(user.getRoomId());
     room.leaveUser(user);
+    if (room.getNumOfUsers === 0) lobby.deleteRoom();
   }
 
   /**

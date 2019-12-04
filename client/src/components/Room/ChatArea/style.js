@@ -59,6 +59,10 @@ const buttonStyle = `
         background-image: ${ROOM.BUTTON_HOVER_EFFECT};
     }
 
+    :focus {
+        outline: none;
+    }
+
     border: 1px solid lightslategrey;
     border-radius: ${ROOM.BORDER_RADIUS_SMALL}px;
     background-color: ${CHAT_AREA.BUTTON_COLOR};
@@ -71,12 +75,19 @@ const buttonStyle = `
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: ${ROOM.FONT_FAMILY};
 `;
 
-const ExitButton = styled.div`
+const ExitButton = styled.button.attrs({
+  disabled: (props) => (props.isGameStarted ? 'disabled' : ''),
+})`
     width: 25%;
     height: 100%;
     ${buttonStyle}
+    color: ${(props) => (props.isGameStarted ? 'gray' : 'black')};
+    cursor: ${(props) => (props.isGameStarted ? 'default' : 'pointer')};
+    background-image: ${(props) => (props.isGameStarted ? ROOM.BUTTON_HOVER_EFFECT : 'none')};
+    box-shadow: ${(props) => (props.isGameStarted ? 'none' : CHAT_AREA.BOX_SHADOW)};
 `;
 
 const ChatLog = styled.div`
@@ -135,9 +146,7 @@ const InputBox = styled.input.attrs({
     };
 `;
 
-const SendButton = styled.div.attrs({
-  type: 'button',
-})`
+const SendButton = styled.button`
     width: 25%;
     height: 100%;
     ${buttonStyle}
