@@ -8,8 +8,8 @@ const Log = () => {
   const [chatList, setChatList] = useState([]);
   const logRef = useRef();
 
-  const makeChat = (nickname, message) => (
-    <Chat>
+  const makeChat = (nickname, message, index) => (
+    <Chat key={index}>
       <ChatNinkname>{nickname}: </ChatNinkname>
       <ChatMessage>{message}</ChatMessage>
     </Chat>
@@ -17,7 +17,7 @@ const Log = () => {
 
   const addChat = ({ nickname, message }) => {
     setChatList((prevChatList) => {
-      const newChat = makeChat(nickname, message);
+      const newChat = makeChat(nickname, message, prevChatList.length);
       return [...prevChatList, newChat];
     });
   };
