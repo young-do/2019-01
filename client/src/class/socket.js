@@ -33,6 +33,10 @@ class SocketContainer {
     this.socket.emit(EVENT.ENTER_ROOM, data);
   }
 
+  emitChatMessage(data) {
+    this.socket.emit(EVENT.CHAT_MESSAGE, data);
+  }
+
   onRoomInfos(callback) {
     if (isFunction(callback)) {
       this.socket.on(EVENT.ROOM_INFOS, (data) => callback(data));
@@ -90,6 +94,12 @@ class SocketContainer {
   onStartGame(callback) {
     if (isFunction(callback)) {
       this.socket.on(EVENT.START_GAME, (data) => callback(data));
+    }
+  }
+
+  onChatMessage(callback) {
+    if (isFunction(callback)) {
+      this.socket.on(EVENT.CHAT_MESSAGE, (data) => callback(data));
     }
   }
 }

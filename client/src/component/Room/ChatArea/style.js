@@ -52,8 +52,8 @@ const Emoji = styled.div.attrs((props) => ({
 const buttonStyle = `
     &:active {
         box-shadow: none;
-        background-image: linear-gradient(-180deg, rgba(150, 150, 150, 0.1), rgba(150, 150, 150, 0.2) 50%);
         color: gray;
+        background-color: rgba(10,10,10,0.1);
     }
     border: 1px solid lightslategrey;
     border-radius: 8px;
@@ -75,15 +75,23 @@ const buttonStyle = `
 const ExitButton = styled.div`
     width: 25%;
     height: 100%;
-    ${buttonStyle};
+    ${buttonStyle}
 `;
 
 const ChatLog = styled.div`
     width: 100%;
+    max-width: 100%;
     height: 80%;
-    overflow: scroll;
+    overflow: auto;
     box-sizing: border-box;
     padding: 8px;
+`;
+
+const ChatNotice = styled.div`
+    text-align: center;
+    color: coral;
+    font-weight: bold;
+    margin-bottom: 10%;
 `;
 
 const Chat = styled.div`
@@ -96,6 +104,8 @@ const ChatNinkname = styled.span`
 `;
 
 const ChatMessage = styled.span`
+    max-width: 100%;
+    word-wrap: break-word;
     line-height: ${QUIZ.FONT_SIZE}px;
 `;
 
@@ -124,14 +134,16 @@ const InputBox = styled.input.attrs({
     };
 `;
 
-const SendButton = styled.div`
+const SendButton = styled.div.attrs({
+  type: 'button',
+})`
     width: 25%;
     height: 100%;
-    ${buttonStyle};
+    ${buttonStyle}
 `;
 
 export {
   ChatAreaWrapper, ChatHeader, RoomInfo, ExitButton,
   ChatLog, ChatInput, InputBox, SendButton, PlayerInfo,
-  Emoji, Chat, ChatNinkname, ChatMessage,
+  Emoji, Chat, ChatNinkname, ChatMessage, ChatNotice,
 };
