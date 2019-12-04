@@ -148,8 +148,11 @@ class Room {
     this.nicknameList.push(user.getNickname());
 
     this.users.delete(user.getId());
+    const nickname = user.getNickname();
+    const isAlive = (this.aliveUsers.get(nickname) !== undefined);
+    const characterList = [{ nickname, isAlive }];
+
     this.users.forEach((_user) => {
-      const characterList = [{ nickname: user.getNickname() }];
       _user.emitLeaveUser({ characterList, isOwner: this._isOwner(_user) });
     });
     this.aliveUsers.delete(user.getNickname());

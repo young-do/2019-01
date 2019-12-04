@@ -47,10 +47,10 @@ const CounterWrapper = styled.div`
 `;
 
 const GameStartButton = styled.div`
-    &:active {
+    :active {
         box-shadow: ${GAME_START_BUTTON.BOX_SHADOW_CLICKED};
     }
-    &:hover {
+    :hover {
         background-image: ${ROOM.BUTTON_HOVER_EFFECT};
     }
     position: absolute;

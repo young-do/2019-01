@@ -50,15 +50,15 @@ const Emoji = styled.div.attrs((props) => ({
 `;
 
 const buttonStyle = `
-    &:active {
+    :active {
         box-shadow: none;
         color: gray;
     }
 
-    &:hover {
+    :hover {
         background-image: ${ROOM.BUTTON_HOVER_EFFECT};
     }
-    
+
     border: 1px solid lightslategrey;
     border-radius: ${ROOM.BORDER_RADIUS_SMALL}px;
     background-color: ${CHAT_AREA.BUTTON_COLOR};

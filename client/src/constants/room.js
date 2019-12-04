@@ -87,6 +87,8 @@ const CHAT_AREA = {
   MAX_MESSAGE_LENGTH: 50,
   BOX_SHADOW: '1px 1px 0px dimgrey',
   BUTTON_COLOR: 'rgba(255, 255, 255, 0.5)',
+  EMOJI_URL_PLAYER: 'https://kr.object.ncloudstorage.com/connect-2019-01/image/player-emoji.png',
+  EMOJI_URL_VIEWER: 'https://kr.object.ncloudstorage.com/connect-2019-01/image/viewer-emoji.png',
 };
 
 const ROOM = {
