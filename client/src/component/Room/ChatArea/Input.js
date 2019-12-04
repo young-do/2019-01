@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { KEYCODE } from '../../../constants/room';
+import { KEYCODE, CHAT_AREA } from '../../../constants/room';
 import { ChatInput, InputBox, SendButton } from './style';
 import socket from '../../../class/socket';
 
@@ -7,8 +7,11 @@ const Input = () => {
   const [message, setMessage] = useState('');
 
   const sendMessage = () => {
-    if (message.length > 50) return;
     if (message === '') return;
+    if (message.length > CHAT_AREA.MAX_MESSAGE_LENGTH) {
+      setMessage(message.slice(0, CHAT_AREA.MAX_MESSAGE_LENGTH));
+    }
+
     socket.emitChatMessage(message);
     setMessage('');
   };

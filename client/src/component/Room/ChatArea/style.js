@@ -8,9 +8,9 @@ const ChatAreaWrapper = styled.div`
     height: ${FIELD.getHeight()}px;
     margin-top: ${DASHBOARD.HEIGHT + ROOM.MARGIN}px;
     box-sizing: border-box;
-    padding: 8px;
+    padding: 1%;
     border: 1px solid lightslategrey;
-    border-radius: 8px;
+    border-radius: ${ROOM.BORDER_RADIUS_SMALL}px;
     background-color: ${CHAT_AREA.BG_COLOR};
     display: flex;
     flex-direction: column;
@@ -43,22 +43,26 @@ const PlayerInfo = styled.div`
 const Emoji = styled.div.attrs((props) => ({
   style: { backgroundImage: `url(${props.url})` },
 }))`
-    background-size: 20px 20px;
-    width: 20px;
-    height: 20px;
-    margin-left: 8px;
+    background-size: 100% 100%;
+    width: 40%;
+    height: 50%;
+    margin-left: 10%;
 `;
 
 const buttonStyle = `
     &:active {
         box-shadow: none;
         color: gray;
-        background-color: rgba(10,10,10,0.1);
     }
+
+    &:hover {
+        background-image: ${ROOM.BUTTON_HOVER_EFFECT};
+    }
+    
     border: 1px solid lightslategrey;
-    border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 1px 1px 0px dimgrey;
+    border-radius: ${ROOM.BORDER_RADIUS_SMALL}px;
+    background-color: ${CHAT_AREA.BUTTON_COLOR};
+    box-shadow: ${CHAT_AREA.BOX_SHADOW};
     color: black;
     cursor: pointer;
     box-sizing: border-box;
@@ -67,9 +71,6 @@ const buttonStyle = `
     display: flex;
     align-items: center;
     justify-content: center;
-    &:hover {
-        background-image: linear-gradient(-180deg, rgba(150, 150, 150, 0.1), rgba(150, 150, 150, 0.2) 50%);
-    }
 `;
 
 const ExitButton = styled.div`
@@ -84,7 +85,7 @@ const ChatLog = styled.div`
     height: 80%;
     overflow: auto;
     box-sizing: border-box;
-    padding: 8px;
+    padding: 3%;
 `;
 
 const ChatNotice = styled.div`
@@ -96,7 +97,7 @@ const ChatNotice = styled.div`
 
 const Chat = styled.div`
     width: 100%;
-    margin-bottom: 8px;
+    margin-bottom: 1%;
 `;
 
 const ChatNinkname = styled.span`
@@ -118,17 +119,17 @@ const ChatInput = styled.div`
 
 const InputBox = styled.input.attrs({
   type: 'text',
-  maxLength: '50',
+  maxLength: CHAT_AREA.MAX_MESSAGE_LENGTH,
 })`
     width: 72%;
     height: 100%;
-    border-radius: 8px;
+    border-radius: ${ROOM.BORDER_RADIUS_SMALL}px;
     box-sizing: border-box;
-    padding: 0 8px;
+    padding: 0 3%;
     font-size: ${CHAT_AREA.FONT_SIZE}px;
-    box-shadow: 1px 1px 0px dimgrey;
+    box-shadow: ${CHAT_AREA.BOX_SHADOW};
     border: 1px solid lightslategrey;
-    font-family: 'DungGeunMo';
+    font-family: ${ROOM.FONT_FAMILY};
     &:focus {
         outline: none;
     };
