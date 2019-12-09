@@ -15,8 +15,13 @@ class User {
     this.id = socket.id;
     this.socket = socket;
     this.nickname = socket.handshake.query.githubId;
+    this.guest = this.nickname === undefined;
     this.character = null;
     this.roomId = null;
+  }
+
+  isGuest() {
+    return this.guest;
   }
 
   getNickname() {

@@ -102,7 +102,7 @@ class Room {
       await this._fetchRandomNickname();
     }
 
-    if (user.getNickname() === undefined) {
+    if (user.isGuest()) {
       user.setNickname(this.nicknameList.shift());
     }
 
@@ -152,12 +152,15 @@ class Room {
       this.indexOfCharacters[indexX][indexY] = undefined;
       user.deleteCharacter();
     }
-    this.nicknameList.push(user.getNickname());
 
     this.users.delete(user.getId());
     const nickname = user.getNickname();
     const isAlive = this.aliveUsers.has(nickname);
     const characterList = [{ nickname, isAlive }];
+
+    if (user.isGuest()) {
+      this.nicknameList.push(user.getNickname());
+    }
 
     this.users.forEach((_user) => {
       _user.emitLeaveUser({ characterList, isOwner: this._isOwner(_user) });
