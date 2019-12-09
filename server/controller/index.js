@@ -35,6 +35,14 @@ class Controller {
     lobby.createRoom(user, room);
   }
 
+  _letUserKnockRoom(user, roomId) {
+    if (user.isInLobby() === false) return;
+    const room = lobby.getRoom(roomId);
+    const isEnterable = !room.isUserEntered(user);
+
+    user.emitKnockRoom({ isEnterable, roomId });
+  }
+
   /**
    *
    * @param {User} user
@@ -126,6 +134,7 @@ class Controller {
    */
   _bindEvent(user) {
     user.onCreateRoom((roomName) => this._letUserCreateRoom(user, roomName));
+    user.onKnockRoom((roomId) => this._letUserKnockRoom(user, roomId));
     user.onEnterRoom(async (roomId) => {
       await this._letUserEnterRoom(user, roomId);
     });

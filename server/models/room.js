@@ -56,6 +56,11 @@ class Room {
     return true;
   }
 
+  isUserEntered(user) {
+    if (user.isGuest()) return false;
+    return this.users.has(user.getNickname());
+  }
+
   isStarted() {
     return this.isGameStarted;
   }
@@ -92,19 +97,18 @@ class Room {
    * @param {User} user
    */
   async enterUser(user) {
-    this.users.set(user.getId(), user);
-
     if (this.isGameStarted === false) {
       this._placeCharacter(user);
     }
 
-    if (!this.nicknameList.length) {
+    if (this.nicknameList.length === 0) {
       await this._fetchRandomNickname();
     }
 
     if (user.isGuest()) {
       user.setNickname(this.nicknameList.shift());
     }
+    this.users.set(user.getNickname(), user);
 
     const myCharacter = user.getCharacter();
     const characterList = this.makeCharacterList(myCharacter);
@@ -153,7 +157,7 @@ class Room {
       user.deleteCharacter();
     }
 
-    this.users.delete(user.getId());
+    this.users.delete(user.getNickname());
     const nickname = user.getNickname();
     const isAlive = this.aliveUsers.has(nickname);
     const characterList = [{ nickname, isAlive }];
@@ -356,8 +360,8 @@ class Room {
    * @returns {Boolean}
    */
   _isOwner(user) {
-    const ownerId = this.users.keys().next().value;
-    return ownerId === user.getId();
+    const ownerNickname = this.users.keys().next().value;
+    return ownerNickname === user.getNickname();
   }
 
   /**

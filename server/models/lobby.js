@@ -36,7 +36,6 @@ class Lobby {
    */
   enterUser(user) {
     this.users.set(user.getId(), user);
-
     user.emitEnterLobby(this._makeRoomInfos());
   }
 

@@ -68,6 +68,14 @@ class User {
     });
   }
 
+  onKnockRoom(callback) {
+    if (isFunction(callback) === false) return;
+    this.socket.on(EVENT.KNOCK_ROOM, (roomId) => {
+      callback(roomId);
+      this.roomId = null;
+    });
+  }
+
   onEnterRoom(callback) {
     if (isFunction(callback) === false) return;
     this.socket.on(EVENT.ENTER_ROOM, (roomId) => {
@@ -129,6 +137,10 @@ class User {
 
   emitUpdateRoomInfo(data) {
     this.socket.emit(EVENT.UPDATE_ROOM_INFO, data);
+  }
+
+  emitKnockRoom(data) {
+    this.socket.emit(EVENT.KNOCK_ROOM, data);
   }
 
   emitEnterRoom(data) {

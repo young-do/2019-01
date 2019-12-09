@@ -30,14 +30,17 @@ const Lobby = () => {
   const makeRoomInfoButton = ({
     // eslint-disable-next-line react/prop-types
     id, name, numOfUsers, isEnterable,
-  }) => (
-    <RoomInfoButton
-      key={id}
-      roomId={id}
-      name={name}
-      numOfUsers={numOfUsers}
-      enterable={isEnterable} />
-  );
+  }) => {
+    const onClick = () => socket.emitKnockRoom(id);
+    return (
+      <RoomInfoButton
+        key={id}
+        name={name}
+        numOfUsers={numOfUsers}
+        enterable={isEnterable}
+        onClick={onClick} />
+    );
+  };
 
   const openRoomCreateModal = () => setModalOpen(true);
 
@@ -105,6 +108,10 @@ const Lobby = () => {
     });
   };
 
+  const enterRoom = ({ isEnterable, roomId }) => {
+    if (isEnterable) history.push(`/room/${roomId}`);
+  };
+
   useEffect(() => {
     const githubId = getNicknameFromJwt();
 
@@ -119,6 +126,7 @@ const Lobby = () => {
     socket.onCreateRoom(enterCreatedRoom);
     socket.onRoomIsCreated(updateCreatedRoom);
     socket.onUpdateRoomInfo(updateRoomInfo);
+    socket.onKnockRoom(enterRoom);
   }, []);
 
   return (

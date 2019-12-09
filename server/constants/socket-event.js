@@ -4,6 +4,7 @@ const EVENT = {
   CREATE_ROOM: 'create_room',
   ROOM_IS_CREATED: 'room_is_created',
   ENTER_ROOM: 'enter_room',
+  KNOCK_ROOM: 'knock_room',
   ENTER_NEW_USER: 'enter_new_user',
   LEAVE_ROOM: 'leave_room',
   LEAVE_USER: 'leave_user',

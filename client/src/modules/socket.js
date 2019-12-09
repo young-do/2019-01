@@ -42,11 +42,15 @@ class SocketContainer {
   }
 
   emitEnterLobby() {
-    this.socket.emit(EVENT.ENTER_LOBBY);
+    if (this.socket !== undefined) this.socket.emit(EVENT.ENTER_LOBBY);
   }
 
   emitEnterRoom(data) {
     if (this.isConnected()) this.socket.emit(EVENT.ENTER_ROOM, data);
+  }
+
+  emitKnockRoom(data) {
+    if (this.isConnected()) this.socket.emit(EVENT.KNOCK_ROOM, data);
   }
 
   emitLeaveRoom() {
@@ -94,6 +98,16 @@ class SocketContainer {
 
     if (isFunction(callback)) {
       this.socket.on(EVENT.ENTER_ROOM, (data) => {
+        if (this.isConnected()) callback(data);
+      });
+    }
+  }
+
+  onKnockRoom(callback) {
+    if (this.socket === undefined) return;
+
+    if (isFunction(callback)) {
+      this.socket.on(EVENT.KNOCK_ROOM, (data) => {
         if (this.isConnected()) callback(data);
       });
     }
