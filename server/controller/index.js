@@ -35,18 +35,32 @@ class Controller {
     lobby.createRoom(user, room);
   }
 
+  /**
+   *
+   * @param {User} user
+   * @param {string} roomId
+   */
   _letUserKnockRoom(user, roomId) {
     if (user.isInLobby() === false) return;
     const room = lobby.getRoom(roomId);
-    const isEnterable = !room.isUserEntered(user);
 
-    user.emitKnockRoom({ isEnterable, roomId });
+    if (room.isEnterable() === false) {
+      user.emitKnockRoom({ isEnterable: false, roomId, message: '방에 들어갈 수 없습니다.' });
+      return;
+    }
+
+    if (room.isUserEntered(user)) {
+      user.emitKnockRoom({ isEnterable: false, roomId, message: '이미 들어간 방입니다.' });
+      return;
+    }
+
+    user.emitKnockRoom({ isEnterable: true, roomId, message: '' });
   }
 
   /**
    *
    * @param {User} user
-   * @param {number} roomId
+   * @param {string} roomId
    *
    * @fires Controller#enter_room
    */

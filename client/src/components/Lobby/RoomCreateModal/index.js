@@ -7,7 +7,7 @@ import {
 import { ROOM_INFO } from '../../../constants/lobby';
 import socket from '../../../modules/socket';
 
-const RoomCreateModal = ({ setOpen }) => {
+const RoomCreateModal = ({ closeModal }) => {
   const [roomName, setRoomName] = useState('');
 
   const keyInputHandler = (e) => {
@@ -19,7 +19,7 @@ const RoomCreateModal = ({ setOpen }) => {
     );
     setRoomName(newRoomName);
   };
-  const closeHandler = () => setOpen(false);
+
   const createRoomHandler = () => {
     if (roomName.length === 0 || roomName.length > ROOM_INFO.NAME_MAXLENGTH) return;
     socket.emitCreateRoom(roomName);
@@ -29,7 +29,7 @@ const RoomCreateModal = ({ setOpen }) => {
     <ModalWrapper>
       <ModalHeader>
         <ModalTitle>Create Room...</ModalTitle>
-        <ModalCloseButton onClick={closeHandler}> close </ModalCloseButton>
+        <ModalCloseButton onClick={closeModal}> close </ModalCloseButton>
       </ModalHeader>
       <ModalInputWrapper>
         <ModalInput type="text" value={roomName} onChange={keyInputHandler} placeholder="input room name" />
@@ -41,7 +41,7 @@ const RoomCreateModal = ({ setOpen }) => {
 };
 
 RoomCreateModal.propTypes = propTypes.shape({
-  setOpen: propTypes.func.isRequired,
+  closeModal: propTypes.func.isRequired,
 }).isRequired;
 
 export default RoomCreateModal;

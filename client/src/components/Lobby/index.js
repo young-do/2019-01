@@ -8,6 +8,7 @@ import socket from '../../modules/socket';
 import RoomInfoButton from './RoomInfoButton';
 import GitHubLoginButton from './GitHubLoginButton';
 import RoomCreateModal from './RoomCreateModal';
+import RoomEnterAlert from './RoomEnterAlert';
 import {
   LobbyWrapper, LobbyHeader, LobbyBody, LobbyNickname, CreateRoomButton,
 } from './style';
@@ -20,6 +21,8 @@ const Lobby = () => {
   const [userName, setUserName] = useState('guest');
   const [isModalOpen, setModalOpen] = useState(false);
   const [roomInfoButtons, setRoomInfoButtons] = useState([]);
+  const [isAlertOpen, setAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const history = useHistory();
   const roomInfos = new Map();
 
@@ -108,8 +111,14 @@ const Lobby = () => {
     });
   };
 
-  const enterRoom = ({ isEnterable, roomId }) => {
-    if (isEnterable) history.push(`/room/${roomId}`);
+  const enterRoom = ({ isEnterable, roomId, message }) => {
+    if (isEnterable) {
+      history.push(`/room/${roomId}`);
+      return;
+    }
+
+    setAlertMessage(message);
+    setAlertOpen(true);
   };
 
   useEffect(() => {
@@ -141,7 +150,8 @@ const Lobby = () => {
           {roomInfoButtons}
         </LobbyBody>
       </LobbyWrapper>
-      {isModalOpen ? <RoomCreateModal setOpen={setModalOpen} /> : ''}
+      {isModalOpen ? <RoomCreateModal closeModal={() => setModalOpen(false)} /> : ''}
+      {isAlertOpen ? <RoomEnterAlert message={alertMessage} closeAlert={() => setAlertOpen(false)} /> : ''}
     </div>
   );
 };

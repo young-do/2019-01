@@ -2,14 +2,12 @@ import styled from 'styled-components';
 import {
   MODAL, HEADER, TITLE, CLOSE_BUTTON, INPUT, CREATE_ROOM_BUTTON,
 } from '../../../constants/modal';
-import { BUTTON_EFFECT } from '../../../constants/lobby';
+import { LOBBY, BUTTON_EFFECT } from '../../../constants/lobby';
+
 
 const ModalWrapper = styled.div`
+    ${LOBBY.LOCATE_CENTER};
     width: ${MODAL.WIDTH}px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
     background: ${MODAL.BACKGROUND_COLOR};
     padding: ${MODAL.PADDING};
     border: ${MODAL.BORDER};

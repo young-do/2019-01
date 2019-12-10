@@ -4,12 +4,9 @@ import {
 } from '../../constants/lobby';
 
 const LobbyWrapper = styled.div`
-    position: absolute;
+    ${LOBBY.LOCATE_CENTER};
     width: ${LOBBY.WIDTH}px;
     height: ${LOBBY.HEIGHT}px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     padding: ${LOBBY.PADDING};
     box-sizing: border-box;
     background-color: ${LOBBY.BACKGROUND_COLOR};
